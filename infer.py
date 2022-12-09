@@ -57,7 +57,7 @@ if torch.cuda.device_count():
 else:
     tsfm = model_bert.roberta
 
-test_df = pd.read_csv(args.test_path,sep='\t').fillna("###")
+test_df = pd.read_csv(args.test_path)
 test_df.text = test_df.text.progress_apply(lambda x: ' '.join([' '.join(sent) for sent in rdrsegmenter.tokenize(x)]))
 X_test = convert_lines(test_df, vocab, bpe,args.max_sequence_length)
 
